@@ -1,9 +1,44 @@
 <html>
-    <head>
-        <title>Community Events Board</title>
-    </head>
-    <body>
-      <h1>Community Events Board</h1>
+<head>
+<style>
+header {
+background-color:black;
+color:white;
+text-align:center;
+padding:5px;
+}
+nav {
+line-height:30px;
+background-color:#eeeeee;
+height:300px;
+width:100px;
+float:right;
+padding:5px;
+}
+section {
+width:350px;
+float:left;
+padding:10px;
+}
+footer {
+background-color:grey;
+color:white;
+clear:both;
+text-align:left;
+padding:5px;
+}
+</style>
+</head>
+      <!-- <center> -->
+
+      <header>
+      <h1>Upload Your Upcoming Tasks</h1>
+      </header>
+
+
+    </div>
+
+      <footer>
       <div class="event-list">
         <ul>
           {% for event in events %}
@@ -11,32 +46,52 @@
           {% endfor %}
         </ul>
       </div>
+    </footer>
       <!-- add a method -->
       <form method = "post" action = "/results" >
-        <p> tell me your event name!</p>
+        <section>
+        <h1> Type your event name</h1>
+
         <input type = "text" name = "event_name"/>
+
+
+        <h1> Type your event date</h1>
+        <input type="date" id="eventdate" name = "event_date"/>
+
+        <div id="nav">
+        <h1> Type your event category</h1>
+        <input type = "radio" name = "category" value = "test" checked><span>Test</span> <br>
+        <input type = "radio" name = "category" value = "homework" checked><span>Homework</span> <br>
+        <input type = "radio" name = "category" value = "project" checked><span>Project</span><br>
+        <input type = "radio" name = "category" value = "classwork" checked><span>Classwork</span><br>
         <br>
-        <p> tell me your event date!</p>
-        <input type = "text" name = "event_date"/>
         <input type = "submit" name = "submit"/>
-        <p> Tell me your event category</p>
-        <input type = "radio" name = "category" value = "social">social <br>
-        <input type = "radio" name = "category" value = "work">work <br>
-        <input type = "radio" name = "category" value = "family">family <br>
-        <input type = "radio" name = "category" value = "friends">friends <br>
+      </section>
+        </div>
         <!-- ask for event name and date'
 
       submit button-->
+      <nav>
+      <br>
       </form>
-      <a href="/friends">Friends</a>
+      <p> Category: </p>
+      <a href="/classwork">Classwork</a>
       <br>
-      <a href="/work">Work</a>
+      <a href="/homework">Homework</a>
       <br>
-      <a href="/social">Social</a>
+      <a href="/test">Test</a>
       <br>
-      <a href="/family">Family</a>
+      <a href="/project">Project</a>
       <br>
       <br>
       <a href="/secret">Clear Events</a>
+
     </body>
+    <!-- <p>Do you want to upload your notes? <br/>
+Click this<br/> <a href="/note">NOTE</a> <br/> -->
+<br><a href="/menu">MENU</a>
+</nav>
+<!-- </center> -->
+
+      </p></p>
 </html>

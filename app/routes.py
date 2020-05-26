@@ -1,12 +1,11 @@
 import os
 from app import app
-from flask import render_template, request, redirect
-
-
-
+from flask import render_template, request, redirect, session, url_for
+# from bson.objectid import ObjectID
 
 from flask_pymongo import PyMongo
-
+#
+app.secret_key = "sdjfhbj;"
 # name of database
 app.config['MONGO_DBNAME'] = 'advance'
 
@@ -16,12 +15,17 @@ app.config['MONGO_URI'] = 'mongodb+srv://William_Lu:C5V1vvx7OLjks3qz@cluster0-h4
 mongo = PyMongo(app)
 
 
-# INDEX
-
 @app.route('/')
+
+@app.route("/menu")
+def menu():
+    return render_template('menu.html')
+
+
 @app.route('/index')
 
 def index():
+    session['username'] = "William"
     # connect to the database
     collection = mongo.db.events
     #query the database to all events
@@ -35,16 +39,6 @@ def index():
 
 # CONNECT TO DB, ADD DATA
 
-@app.route('/add')
-
-def add():
-    # connect to the database
-    collection = mongo.db.events
-    # insert new data
-    collection.insert({"event_name":"test", "event_date":"today"})
-
-    # return a message to the user
-    return "You added an event to database!"
 @app.route('/results', methods = ["get","post"])
 
 def results():
@@ -72,30 +66,30 @@ def secret():
     collection.delete_many({})
     return redirect('/index')
 
-@app.route("/social")
+@app.route("/test")
 def sorted():
     collection = mongo.db.events
-    social = list(collection.find({"event_type": "social"}))
-    print (social)
-    return render_template('index.html', events = social)
+    test = list(collection.find({"event_type": "test"}))
+    print (test)
+    return render_template('index.html', events = test)
 
-@app.route("/family")
-def family():
+@app.route("/project")
+def project():
     collection = mongo.db.events
-    family = list(collection.find({"event_type": "family"}))
-    print (family)
-    return render_template('index.html', events = family)
+    project = list(collection.find({"event_type": "project"}))
+    print (project)
+    return render_template('index.html', events = project)
 
-@app.route("/friends")
-def friends():
+@app.route("/classwork")
+def classwork():
     collection = mongo.db.events
-    friends = list(collection.find({"event_type": "friends"}))
-    print (friends)
-    return render_template('index.html', events = friends)
+    classwork = list(collection.find({"event_type": "classwork"}))
+    print (classwork)
+    return render_template('index.html', events = classwork)
 
-@app.route("/work")
-def work():
+@app.route("/homework")
+def homework():
     collection = mongo.db.events
-    work = list(collection.find({"event_type": "work"}))
-    print (work)
-    return render_template('index.html', events = work)
+    homework = list(collection.find({"event_type": "homework"}))
+    print (homework)
+    return render_template('index.html', events = homework)
